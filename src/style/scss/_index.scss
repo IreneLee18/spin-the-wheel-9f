@@ -1,0 +1,155 @@
+$blue: #343BAA;
+$pink: #F0BEFF;
+
+.color-blue {
+  color: $blue;
+}
+
+.color-pink {
+  color: $pink;
+}
+
+.bg-blue {
+  background: $blue;
+}
+
+.bg-pink {
+  background: $pink;
+}
+
+@mixin circleSize($s) {
+  width: $s;
+  height: $s;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin wheel-center-c-bgc($c, $bgc) {
+  &::before {
+    color: $c;
+  }
+
+  background:$bgc;
+}
+
+body {
+  background: #5858b9;
+  height: 100vh;
+}
+
+.container {
+  @include circleSize(550px);
+  @include absolute-center;
+}
+
+.wheel {
+  @include circleSize(550px);
+  border-radius: 505px;
+  position: relative;
+
+  &-outside {
+    @include circleSize(550px);
+    background-image: url('./image/wheel-outside.svg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  &-center {
+    @include circleSize(128px);
+    border-radius: 50%;
+    background: #1f1172;
+    @include absolute-center;
+    cursor: pointer;
+
+    &:before {
+      content: 'PRESS';
+      @include absolute-center;
+      color: #FF00BA;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    &:hover {
+      @include wheel-center-c-bgc(#1f1172, lighten(#ff00ba, 20%));
+    }
+
+    &:active {
+      @include wheel-center-c-bgc(darken(#ff00ba, 10%), darken(#1f1172, 5%));
+    }
+  }
+
+  &-hand {
+    @include circleSize(100%);
+    transform: rotate(0deg);
+    transition: transform 4s cubic-bezier(.5,.1,.15,1);
+
+    &::before {
+      content: '';
+      @include circleSize(256px);
+      position: absolute;
+      left: 50%;
+      top: -81.5%;
+      transform: translateX(-50%);
+      background-image: url('./image/hand.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+
+    }
+  }
+
+  // 內部資料
+  &-inner {
+    @include circleSize(550px);
+    border-radius: 50%;
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  &-item {
+    @include circleSize(50%);
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform-origin: left bottom;
+
+    // 基數
+    &:nth-child(odd) {
+      color: $blue;
+      background: $pink;
+    }
+
+    // 偶數
+    &:nth-child(even) {
+      color: $pink;
+      background: $blue;
+    }
+
+    &-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+
+      width: 90px;
+      height: 90px;
+      transform: skewX(30deg) rotate(60deg);
+      top: 47%;
+      left: 25%;
+    }
+
+    &-icons {
+      font-size: 72px;
+    }
+
+    &-id {
+      font-size: 28px;
+      font-weight: bold;
+    }
+  }
+}
