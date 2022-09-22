@@ -186,26 +186,28 @@ body {
 .result-banner p {
   color: white;
   font-weight: bold;
-  position: absolute;
   font-size: 72px;
 }
 
 .result-banner .wheel-done {
+  position: absolute;
   top: 40px;
   left: 158px;
 }
 
 .result-banner .you-get-a-free {
   font-size: 32px;
+  position: absolute;
   top: 57px;
-  right: 101px;
+  left: 1100px;
 }
 
 .result-banner .result-title {
   color: #FF00BA;
   text-decoration: underline;
+  position: absolute;
   top: 95px;
-  right: 173px;
+  left: 1100px;
 }
 
 .container {

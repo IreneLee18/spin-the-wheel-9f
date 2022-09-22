@@ -30,6 +30,12 @@ $dark-pink: #FF00BA;
   transform: translate(-50%, -50%);
 }
 
+@mixin absolute-top-left($t, $l) {
+  position: absolute;
+  top: $t;
+  left: $l;
+}
+
 @mixin wheel-center-c-bgc($c, $bgc) {
   &::before {
     color: $c;
@@ -52,7 +58,7 @@ body {
     color: $pink;
     border: none;
     border-radius: 15px;
-    padding: 12px ;
+    padding: 12px;
     font-size: 20px;
     margin: 20px 10px 0 0;
     cursor: pointer;
@@ -73,26 +79,22 @@ body {
   p {
     color: white;
     font-weight: bold;
-    position: absolute;
     font-size: 72px;
   }
 
   .wheel-done {
-    top: 40px;
-    left: 158px;
+    @include absolute-top-left(40px, 158px);
   }
 
   .you-get-a-free {
     font-size: 32px;
-    top: 57px;
-    right: 101px;
+    @include absolute-top-left(57px, 1100px);
   }
 
   .result-title {
     color: $dark-pink;
     text-decoration: underline;
-    top: 95px;
-    right: 173px;
+    @include absolute-top-left(95px, 1100px);
   }
 }
 

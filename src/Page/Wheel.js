@@ -6,9 +6,22 @@ function Wheel({ prize }) {
   const [startDeg, setStartDeg] = useState(0);
   const [deg, setDeg] = useState(startDeg);
   const [start, setStart] = useState(false);
+  const [freePrize, setFreePrize] = useState("");
+  const [showFreePrize, setShowFreePrize] = useState(false);
   const handleClick = () => {
     setStart(true);
   };
+
+  const getFree = useCallback(
+    (picked) => {
+      setShowFreePrize(true);
+      prize.forEach((item, index) => {
+        if (index === picked) return setFreePrize(item.id);
+      });
+    },
+    [prize]
+  );
+
   const getDeg = useCallback(() => {
     const picked = Math.floor(Math.random() * prize.length);
     const currentDeg =
@@ -18,24 +31,35 @@ function Wheel({ prize }) {
       (startDeg % 360);
     setDeg(currentDeg);
     setStartDeg(currentDeg);
-  }, [prize.length, startDeg]);
 
+    // setTimeout--4s: when transition was done then call getFree function.
+    setTimeout(() => {
+      getFree(picked);
+    }, [4000]);
+  }, [getFree, prize.length, startDeg]);
+
+  // render getDeg
   useEffect(() => {
     if (start) {
       getDeg();
       setStart(false);
+      setShowFreePrize(false);
     }
   }, [getDeg, start]);
 
-  // init
+  // init: when「prize.length」was change.
   useEffect(() => {
     setIsLading(true);
     setStartDeg(0);
     setDeg(0);
+    setFreePrize('')
+    setShowFreePrize(false)
+    // 因為需要時間回轉回去0，但為了防止畫面感官不好所以設定setTimeout，等時間到再顯示畫面
     setTimeout(() => {
       setIsLading(false);
     }, [2000]);
   }, [prize.length]);
+
   return (
     <>
       {isLoading ? (
@@ -55,15 +79,17 @@ function Wheel({ prize }) {
               </div>
             </div>
           </div>
-          <div className="result-banner">
-            <p className="wheel-done">
-              WELL
-              <br />
-              DONE!
-            </p>
-            <p className="you-get-a-free">YOU GET A FREE...</p>
-            <p className="result-title">Child!</p>
-          </div>
+          {showFreePrize ? (
+            <div className="result-banner">
+              <p className="wheel-done">
+                WELL
+                <br />
+                DONE!
+              </p>
+              <p className="you-get-a-free">YOU GET A FREE...</p>
+              <p className="result-title">{freePrize}!</p>
+            </div>
+          ) : null}
         </>
       )}
     </>
