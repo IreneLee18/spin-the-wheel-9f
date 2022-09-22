@@ -1,5 +1,6 @@
 $blue: #343BAA;
 $pink: #F0BEFF;
+$dark-pink: #FF00BA;
 
 .color-blue {
   color: $blue;
@@ -40,6 +41,59 @@ $pink: #F0BEFF;
 body {
   background: #5858b9;
   height: 100vh;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.link-group {
+  padding-top: 10px;
+  margin-left: 10px;
+
+  a {
+    color: $pink;
+    border: none;
+    border-radius: 15px;
+    padding: 12px ;
+    font-size: 20px;
+    margin: 20px 10px 0 0;
+    cursor: pointer;
+
+    &:hover {
+      color: darken($pink, 10%);
+    }
+  }
+}
+
+.result-banner {
+  width: 100%;
+  height: 237px;
+  background: $blue;
+  @include absolute-center;
+  z-index: -2;
+
+  p {
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    font-size: 72px;
+  }
+
+  .wheel-done {
+    top: 40px;
+    left: 158px;
+  }
+
+  .you-get-a-free {
+    font-size: 32px;
+    top: 57px;
+    right: 101px;
+  }
+
+  .result-title {
+    color: $dark-pink;
+    text-decoration: underline;
+    top: 95px;
+    right: 173px;
+  }
 }
 
 .container {
@@ -69,24 +123,24 @@ body {
     &:before {
       content: 'PRESS';
       @include absolute-center;
-      color: #FF00BA;
+      color: $dark-pink;
       font-size: 30px;
       font-weight: bold;
     }
 
     &:hover {
-      @include wheel-center-c-bgc(#1f1172, lighten(#ff00ba, 20%));
+      @include wheel-center-c-bgc(#1f1172, lighten($dark-pink, 20%));
     }
 
     &:active {
-      @include wheel-center-c-bgc(darken(#ff00ba, 10%), darken(#1f1172, 5%));
+      @include wheel-center-c-bgc(darken($dark-pink, 10%), darken(#1f1172, 5%));
     }
   }
 
   &-hand {
     @include circleSize(100%);
     transform: rotate(0deg);
-    transition: transform 4s cubic-bezier(.5,.1,.15,1);
+    transition: transform 4s cubic-bezier(.5, .1, .15, 1);
 
     &::before {
       content: '';
@@ -143,6 +197,12 @@ body {
       left: 25%;
     }
 
+    &-title-prize20 {
+      transform: skewX(72deg) rotate(81deg);
+      top: 72%;
+      left: 17%;
+    }
+
     &-icons {
       font-size: 72px;
     }
@@ -151,5 +211,6 @@ body {
       font-size: 28px;
       font-weight: bold;
     }
+
   }
 }

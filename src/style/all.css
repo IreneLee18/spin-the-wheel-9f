@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap");
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -129,24 +130,6 @@ q:after {
   content: none;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-button {
-  border: none;
-  width: 100%;
-  border-radius: 8px;
-  padding: 18px 0 14px;
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-  font-size: 48px;
-}
-
 .color-blue {
   color: #343BAA;
 }
@@ -166,6 +149,63 @@ a {
 body {
   background: #5858b9;
   height: 100vh;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.link-group {
+  padding-top: 10px;
+  margin-left: 10px;
+}
+
+.link-group a {
+  color: #F0BEFF;
+  border: none;
+  border-radius: 15px;
+  padding: 12px;
+  font-size: 20px;
+  margin: 20px 10px 0 0;
+  cursor: pointer;
+}
+
+.link-group a:hover {
+  color: #e48bff;
+}
+
+.result-banner {
+  width: 100%;
+  height: 237px;
+  background: #343BAA;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: -2;
+}
+
+.result-banner p {
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  font-size: 72px;
+}
+
+.result-banner .wheel-done {
+  top: 40px;
+  left: 158px;
+}
+
+.result-banner .you-get-a-free {
+  font-size: 32px;
+  top: 57px;
+  right: 101px;
+}
+
+.result-banner .result-title {
+  color: #FF00BA;
+  text-decoration: underline;
+  top: 95px;
+  right: 173px;
 }
 
 .container {
@@ -306,6 +346,13 @@ body {
           transform: skewX(30deg) rotate(60deg);
   top: 47%;
   left: 25%;
+}
+
+.wheel-item-title-prize20 {
+  -webkit-transform: skewX(72deg) rotate(81deg);
+          transform: skewX(72deg) rotate(81deg);
+  top: 72%;
+  left: 17%;
 }
 
 .wheel-item-icons {

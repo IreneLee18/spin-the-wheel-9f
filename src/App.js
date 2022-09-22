@@ -1,42 +1,25 @@
-import prize from "./Utils/Prize6.json";
-import WheelInner from "./Components/WheelInner";
-import { useState, useEffect, useCallback } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import Wheel from "./Page/Wheel";
+import Edit from "./Page/Edit";
+import prize6 from "./Utils/Prize6.json";
+import prize20 from "./Utils/Prize20.json";
 function App() {
-  const [startDeg, setStartDeg] = useState(0);
-  const [deg, setDeg] = useState(startDeg);
-  const [start, setStart] = useState(false);
-  const handleClick = () => {
-    setStart(true);
-  };
-  const getDeg = useCallback(() => {
-    const picked = Math.floor(Math.random() * prize.length);
-    const currentDeg = Number(startDeg) + 1800 + picked * 60 - (startDeg % 360)
-    console.log(picked,currentDeg,startDeg % 360)
-    setDeg(currentDeg);
-    setStartDeg(currentDeg);
-  },[startDeg]);
-  useEffect(() => {
-    if (start) {
-      getDeg();
-      setStart(false);
-    }
-  }, [getDeg, start]);
+  const data = ["Prize6", "Prize20", "Edit"];
+
   return (
     <>
-      <div className="container">
-        <div className="wheel">
-          <div className="wheel-outside">
-            {/* 6個的 */}
-            <WheelInner prize={prize} />
-            <div className="wheel-center" onClick={handleClick}>
-              <div
-                className="wheel-hand"
-                style={{ transform: `rotate(${deg}deg)` }}
-              ></div>
-            </div>
-          </div>
-        </div>
+      <div className="link-group">
+        {data.map((item) => (
+          <Link key={item} id={item} to={item === "Prize6" ? "/" : item}>
+            {item}
+          </Link>
+        ))}
       </div>
+      <Routes>
+        <Route path="/" element={<Wheel prize={prize6} />} />
+        <Route path="prize20" element={<Wheel prize={prize20} />} />
+        <Route path="edit" element={<Edit />} />
+      </Routes>
     </>
   );
 }
