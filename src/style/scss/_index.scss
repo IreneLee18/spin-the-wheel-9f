@@ -44,14 +44,21 @@ $dark-pink: #FF00BA;
   background:$bgc;
 }
 
+header{
+  background: $blue;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 body {
   background: #5858b9;
-  height: 100vh;
+  min-height: 100vh;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
 .link-group {
-  padding-top: 10px;
+  padding: 10px 0;
   margin-left: 10px;
 
   a {

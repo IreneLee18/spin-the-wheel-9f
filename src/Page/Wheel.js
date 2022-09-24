@@ -1,8 +1,9 @@
 import WheelInner from "./Components/WheelInner";
 import Loading from "./Components/Loading";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 function Wheel({ prize }) {
   const [isLoading, setIsLading] = useState(true);
+  const [prizeData, setPrizeData] = useState(prize);
   const [startDeg, setStartDeg] = useState(0);
   const [deg, setDeg] = useState(startDeg);
   const [start, setStart] = useState(false);
@@ -15,19 +16,25 @@ function Wheel({ prize }) {
   const getFree = useCallback(
     (picked) => {
       setShowFreePrize(true);
-      prize.forEach((item, index) => {
+      prizeData.forEach((item, index) => {
         if (index === picked) return setFreePrize(item.id);
       });
+      // 要修改prize數量寫法：首先先取出原本的state，接著原本state用map去修改資料，若陣列=目前取得值，就將prize-1；不是就回傳原本的資料。
+      setPrizeData((state) =>
+        state.map((item, index) =>
+          index === picked ? { ...item, prize: item.prize - 1 } : item
+        )
+      );
     },
-    [prize]
+    [prizeData]
   );
 
   const getDeg = useCallback(() => {
-    const picked = Math.floor(Math.random() * prize.length);
+    let picked = Math.floor(Math.random() * prizeData.length);
     const currentDeg =
       Number(startDeg) +
       1800 +
-      picked * (360 / prize.length) -
+      picked * (360 / prizeData.length) -
       (startDeg % 360);
     setDeg(currentDeg);
     setStartDeg(currentDeg);
@@ -36,7 +43,7 @@ function Wheel({ prize }) {
     setTimeout(() => {
       getFree(picked);
     }, [4000]);
-  }, [getFree, prize.length, startDeg]);
+  }, [getFree, prizeData.length, startDeg]);
 
   // render getDeg
   useEffect(() => {
@@ -52,13 +59,14 @@ function Wheel({ prize }) {
     setIsLading(true);
     setStartDeg(0);
     setDeg(0);
-    setFreePrize('')
-    setShowFreePrize(false)
+    setFreePrize("");
+    setShowFreePrize(false);
+    setPrizeData(prize);
     // 因為需要時間回轉回去0，但為了防止畫面感官不好所以設定setTimeout，等時間到再顯示畫面
     setTimeout(() => {
       setIsLading(false);
     }, [2000]);
-  }, [prize.length]);
+  }, [prize, prize.length]);
 
   return (
     <>
@@ -69,7 +77,7 @@ function Wheel({ prize }) {
           <div className="container">
             <div className="wheel">
               <div className="wheel-outside">
-                <WheelInner prize={prize} />
+                <WheelInner prize={prizeData} />
                 <div className="wheel-center" onClick={handleClick}>
                   <div
                     className="wheel-hand"
