@@ -1,16 +1,22 @@
 import WheelInner from "./Components/WheelInner";
 import Loading from "./Components/Loading";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 function Wheel({ prize }) {
   const [isLoading, setIsLading] = useState(true);
   const [prizeData, setPrizeData] = useState(prize);
   const [startDeg, setStartDeg] = useState(0);
   const [deg, setDeg] = useState(startDeg);
+  // start picked prize.
   const [start, setStart] = useState(false);
+  // if "Start picked prize" is start, can't press start button.
+  const [isStart, setIsStart] = useState(false);
   const [freePrize, setFreePrize] = useState("");
   const [showFreePrize, setShowFreePrize] = useState(false);
   const handleClick = () => {
-    setStart(true);
+    if (!isStart) {
+      setStart(true);
+      setIsStart(true);
+    }
   };
 
   const getFree = useCallback(
@@ -42,6 +48,7 @@ function Wheel({ prize }) {
     // setTimeout--4s: when transition was done then call getFree function.
     setTimeout(() => {
       getFree(picked);
+      setIsStart(false);
     }, [4000]);
   }, [getFree, prizeData.length, startDeg]);
 
@@ -49,8 +56,8 @@ function Wheel({ prize }) {
   useEffect(() => {
     if (start) {
       getDeg();
-      setStart(false);
       setShowFreePrize(false);
+      setStart(false);
     }
   }, [getDeg, start]);
 
