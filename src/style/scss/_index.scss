@@ -63,6 +63,9 @@ body {
 .link-group {
   padding: 10px 0;
   margin-left: 10px;
+  @media (max-width:375px) {
+    
+  }
 
   a {
     color: $pink;
@@ -85,6 +88,9 @@ body {
   background: $blue;
   @include absolute-center;
   z-index: -2;
+  @media (max-width:375px) {
+    display: none;
+  }
 
   p {
     color: white;
@@ -111,35 +117,44 @@ body {
 .container {
   @include circleSize(550px);
   @include absolute-center;
+
+  @media (max-width:375px) {
+    @include circleSize(350px);
+  }
 }
 
 .wheel {
-  @include circleSize(550px);
-  border-radius: 505px;
+  @include circleSize(100%);
+  border-radius: 50%;
   position: relative;
 
   &-outside {
-    @include circleSize(550px);
+    @include circleSize(100%);
     position: relative;
 
     &:after {
       content: '';
       position: absolute;
       top: 0;
-      @include circleSize(550px);
+      @include circleSize(100%);
       background-image: url('./image/wheel-outside.svg');
       background-size: cover;
       background-position: center;
     }
   }
 
+
+
   &-center {
     @include circleSize(128px);
     border-radius: 50%;
     background: #1f1172;
     @include absolute-center;
-    cursor: pointer;
     z-index: 100;
+
+    @media (max-width:375px) {
+      @include circleSize(90px);
+    }
 
     &:before {
       content: 'PRESS';
@@ -147,6 +162,9 @@ body {
       color: $dark-pink;
       font-size: 30px;
       font-weight: bold;
+      @media (max-width:375px) {
+        font-size: 18px;
+      }
     }
 
     &:hover {
@@ -174,6 +192,11 @@ body {
       background-position: center;
       background-repeat: no-repeat;
 
+      @media (max-width:375px) {
+        @include circleSize(180px);
+        background-size: 100px;
+        top: -85%;
+      }
     }
   }
 
@@ -228,11 +251,17 @@ body {
 
     &-icons {
       font-size: 72px;
+      @media (max-width:375px) {
+        font-size: 36px;
+      }
     }
 
     &-id {
       font-size: 28px;
       font-weight: bold;
+      @media (max-width:375px) {
+        font-size: 14px;
+      }
     }
 
   }

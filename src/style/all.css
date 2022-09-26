@@ -134,6 +134,14 @@ button {
   cursor: pointer;
 }
 
+.no-drop {
+  cursor: no-drop;
+}
+
+.point {
+  cursor: pointer;
+}
+
 .color-blue {
   color: #343BAA;
 }
@@ -194,6 +202,12 @@ body {
   z-index: -2;
 }
 
+@media (max-width: 375px) {
+  .result-banner {
+    display: none;
+  }
+}
+
 .result-banner p {
   color: white;
   font-weight: bold;
@@ -231,16 +245,23 @@ body {
           transform: translate(-50%, -50%);
 }
 
+@media (max-width: 375px) {
+  .container {
+    width: 350px;
+    height: 350px;
+  }
+}
+
 .wheel {
-  width: 550px;
-  height: 550px;
-  border-radius: 505px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   position: relative;
 }
 
 .wheel-outside {
-  width: 550px;
-  height: 550px;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -248,8 +269,8 @@ body {
   content: '';
   position: absolute;
   top: 0;
-  width: 550px;
-  height: 550px;
+  width: 100%;
+  height: 100%;
   background-image: url("./image/wheel-outside.svg");
   background-size: cover;
   background-position: center;
@@ -265,8 +286,14 @@ body {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  cursor: pointer;
   z-index: 100;
+}
+
+@media (max-width: 375px) {
+  .wheel-center {
+    width: 90px;
+    height: 90px;
+  }
 }
 
 .wheel-center:before {
@@ -279,6 +306,12 @@ body {
   color: #FF00BA;
   font-size: 30px;
   font-weight: bold;
+}
+
+@media (max-width: 375px) {
+  .wheel-center:before {
+    font-size: 18px;
+  }
 }
 
 .wheel-center:hover {
@@ -320,6 +353,15 @@ body {
   background-image: url("./image/hand.svg");
   background-position: center;
   background-repeat: no-repeat;
+}
+
+@media (max-width: 375px) {
+  .wheel-hand::before {
+    width: 180px;
+    height: 180px;
+    background-size: 100px;
+    top: -85%;
+  }
 }
 
 .wheel-inner {
@@ -377,9 +419,21 @@ body {
   font-size: 72px;
 }
 
+@media (max-width: 375px) {
+  .wheel-item-icons {
+    font-size: 36px;
+  }
+}
+
 .wheel-item-id {
   font-size: 28px;
   font-weight: bold;
+}
+
+@media (max-width: 375px) {
+  .wheel-item-id {
+    font-size: 14px;
+  }
 }
 
 .wheel .wheel-item-6-1 {

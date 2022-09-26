@@ -130,6 +130,15 @@ q:after {
   content: none;
 }
 
-button{
+button {
   cursor: pointer;
+}
+
+.no-drop {
+  cursor: no-drop;
+}
+
+.point {
+  cursor: pointer;
+  ;
 }

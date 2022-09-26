@@ -1,13 +1,11 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Wheel from "./Page/Wheel";
 import Create from "./Page/Create";
-import Edit6 from './Page/Components/Edit6'
-import Edit20 from './Page/Components/Edit20'
-import prize6 from "./Utils/Prize6.json";
-import prize20 from "./Utils/Prize20.json";
+import Edit6 from "./Page/Components/Edit6";
+import Edit20 from "./Page/Components/Edit20";
+import prize from "./Utils/PrizeData.json";
 function App() {
   const data = ["Prize6", "Prize20", "Create"];
-  // const [create, setCreate] = useState(false);
   return (
     <>
       <header>
@@ -20,11 +18,11 @@ function App() {
         </div>
       </header>
       <Routes>
-        <Route path="/" element={<Wheel prize={prize6} />} />
-        <Route path="prize20" element={<Wheel prize={prize20} />} />
+        <Route path="/" element={<Wheel prize={prize[0].prize6} />} />
+        <Route path="prize20" element={<Wheel prize={prize[1].prize20} />} />
         <Route path="create" element={<Create />}>
-          <Route index element={<Edit6/>}/>
-          <Route path="prize20" element={<Edit20/>}/>
+          <Route index element={<Edit6 />} />
+          <Route path="prize20" element={<Edit20 />} />
         </Route>
       </Routes>
     </>

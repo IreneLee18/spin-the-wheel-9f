@@ -1,5 +1,4 @@
-import Prize6Inner from "./Prize6Inner";
-import Prize20Inner from "./Prize20Inner";
+import PrizeInner from "./PrizeInner";
 function WheelInner({ prize }) {
   const prizeLength = prize.length;
   return (
@@ -22,11 +21,7 @@ function WheelInner({ prize }) {
             key={item.id}
             id={item.id}
           >
-            {prizeLength === 6 ? (
-              <Prize6Inner data={item} />
-            ) : (
-              <Prize20Inner data={item} />
-            )}
+            <PrizeInner data={item} length={prize.length} />
           </li>
         ))}
       </ul>

@@ -85,7 +85,10 @@ function Wheel({ prize }) {
             <div className="wheel">
               <div className="wheel-outside">
                 <WheelInner prize={prizeData} />
-                <div className="wheel-center" onClick={handleClick}>
+                <div
+                  className={`wheel-center ${!isStart ? `point` : "no-drop"}`}
+                  onClick={handleClick}
+                >
                   <div
                     className="wheel-hand"
                     style={{ transform: `rotate(${deg}deg)` }}
