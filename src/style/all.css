@@ -241,6 +241,15 @@ body {
 .wheel-outside {
   width: 550px;
   height: 550px;
+  position: relative;
+}
+
+.wheel-outside:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 550px;
+  height: 550px;
   background-image: url("./image/wheel-outside.svg");
   background-size: cover;
   background-position: center;
@@ -257,6 +266,7 @@ body {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   cursor: pointer;
+  z-index: 100;
 }
 
 .wheel-center:before {
@@ -313,59 +323,54 @@ body {
 }
 
 .wheel-inner {
-  width: 550px;
-  height: 550px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  position: absolute;
-  overflow: hidden;
-  z-index: -1;
+  position: relative;
 }
 
 .wheel-item {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  right: 0;
-  top: 0;
-  -webkit-transform-origin: left bottom;
-          transform-origin: left bottom;
+  -webkit-clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+          clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.wheel-item::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  -webkit-transform-origin: right center;
+          transform-origin: right center;
+  z-index: -1;
 }
 
 .wheel-item:nth-child(odd) {
   color: #343BAA;
+}
+
+.wheel-item:nth-child(odd)::before {
   background: #F0BEFF;
 }
 
 .wheel-item:nth-child(even) {
   color: #F0BEFF;
+}
+
+.wheel-item:nth-child(even)::before {
   background: #343BAA;
 }
 
 .wheel-item-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  -webkit-transform: skewX(30deg) rotate(60deg);
-          transform: skewX(30deg) rotate(60deg);
-  top: 47%;
-  left: 25%;
-}
-
-.wheel-item-title-prize20 {
-  -webkit-transform: skewX(72deg) rotate(81deg);
-          transform: skewX(72deg) rotate(81deg);
-  top: 72%;
-  left: 17%;
+  height: 50%;
+  text-align: center;
+  padding-top: 40px;
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
 }
 
 .wheel-item-icons {
@@ -375,6 +380,266 @@ body {
 .wheel-item-id {
   font-size: 28px;
   font-weight: bold;
+}
+
+.wheel .wheel-item-6-1 {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.wheel .wheel-item-6-1::before {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+.wheel .wheel-item-6-2 {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+.wheel .wheel-item-6-2::before {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+.wheel .wheel-item-6-3 {
+  -webkit-transform: rotate(120deg);
+          transform: rotate(120deg);
+}
+
+.wheel .wheel-item-6-3::before {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+.wheel .wheel-item-6-4 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.wheel .wheel-item-6-4::before {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+.wheel .wheel-item-6-5 {
+  -webkit-transform: rotate(240deg);
+          transform: rotate(240deg);
+}
+
+.wheel .wheel-item-6-5::before {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+.wheel .wheel-item-6-6 {
+  -webkit-transform: rotate(300deg);
+          transform: rotate(300deg);
+}
+
+.wheel .wheel-item-6-6::before {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+.wheel .wheel-item-20-1 {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.wheel .wheel-item-20-1::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-2 {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-2::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-3 {
+  -webkit-transform: rotate(36deg);
+          transform: rotate(36deg);
+}
+
+.wheel .wheel-item-20-3::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-4 {
+  -webkit-transform: rotate(54deg);
+          transform: rotate(54deg);
+}
+
+.wheel .wheel-item-20-4::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-5 {
+  -webkit-transform: rotate(72deg);
+          transform: rotate(72deg);
+}
+
+.wheel .wheel-item-20-5::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-6 {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.wheel .wheel-item-20-6::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-7 {
+  -webkit-transform: rotate(108deg);
+          transform: rotate(108deg);
+}
+
+.wheel .wheel-item-20-7::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-8 {
+  -webkit-transform: rotate(126deg);
+          transform: rotate(126deg);
+}
+
+.wheel .wheel-item-20-8::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-9 {
+  -webkit-transform: rotate(144deg);
+          transform: rotate(144deg);
+}
+
+.wheel .wheel-item-20-9::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-10 {
+  -webkit-transform: rotate(162deg);
+          transform: rotate(162deg);
+}
+
+.wheel .wheel-item-20-10::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-11 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.wheel .wheel-item-20-11::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-12 {
+  -webkit-transform: rotate(198deg);
+          transform: rotate(198deg);
+}
+
+.wheel .wheel-item-20-12::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-13 {
+  -webkit-transform: rotate(216deg);
+          transform: rotate(216deg);
+}
+
+.wheel .wheel-item-20-13::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-14 {
+  -webkit-transform: rotate(234deg);
+          transform: rotate(234deg);
+}
+
+.wheel .wheel-item-20-14::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-15 {
+  -webkit-transform: rotate(252deg);
+          transform: rotate(252deg);
+}
+
+.wheel .wheel-item-20-15::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-16 {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+.wheel .wheel-item-20-16::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-17 {
+  -webkit-transform: rotate(288deg);
+          transform: rotate(288deg);
+}
+
+.wheel .wheel-item-20-17::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-18 {
+  -webkit-transform: rotate(306deg);
+          transform: rotate(306deg);
+}
+
+.wheel .wheel-item-20-18::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-19 {
+  -webkit-transform: rotate(324deg);
+          transform: rotate(324deg);
+}
+
+.wheel .wheel-item-20-19::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
+}
+
+.wheel .wheel-item-20-20 {
+  -webkit-transform: rotate(342deg);
+          transform: rotate(342deg);
+}
+
+.wheel .wheel-item-20-20::before {
+  -webkit-transform: rotate(18deg);
+          transform: rotate(18deg);
 }
 
 .edit-link-group {

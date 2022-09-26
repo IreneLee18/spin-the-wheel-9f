@@ -4,13 +4,23 @@ function WheelInner({ prize }) {
   const prizeLength = prize.length;
   return (
     <>
-      <ul className="wheel-inner">
-        {prize.map((item) => (
+      <ul
+        className="wheel-inner"
+        style={
+          prizeLength === 6
+            ? { transform: "rotate(-30deg)" }
+            : { transform: "rotate(-9deg)" }
+        }
+      >
+        {prize.map((item, index) => (
           <li
-            className="wheel-item"
+            className={`wheel-item ${
+              prizeLength === 6
+                ? `wheel-item-6-${index + 1}`
+                : `wheel-item-20-${index + 1}`
+            } `}
             key={item.id}
             id={item.id}
-            style={{ transform: item.style }}
           >
             {prizeLength === 6 ? (
               <Prize6Inner data={item} />

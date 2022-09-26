@@ -1,6 +1,9 @@
 $blue: #343BAA;
 $pink: #F0BEFF;
 $dark-pink: #FF00BA;
+$max6: 6;
+$max20: 20;
+
 
 .color-blue {
   color: $blue;
@@ -44,7 +47,7 @@ $dark-pink: #FF00BA;
   background:$bgc;
 }
 
-header{
+header {
   background: $blue;
   position: fixed;
   top: 0;
@@ -117,9 +120,17 @@ body {
 
   &-outside {
     @include circleSize(550px);
-    background-image: url('./image/wheel-outside.svg');
-    background-size: cover;
-    background-position: center;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      @include circleSize(550px);
+      background-image: url('./image/wheel-outside.svg');
+      background-size: cover;
+      background-position: center;
+    }
   }
 
   &-center {
@@ -128,6 +139,7 @@ body {
     background: #1f1172;
     @include absolute-center;
     cursor: pointer;
+    z-index: 100;
 
     &:before {
       content: 'PRESS';
@@ -167,49 +179,51 @@ body {
 
   // 內部資料
   &-inner {
-    @include circleSize(550px);
+    @include circleSize(100%);
     border-radius: 50%;
-    position: absolute;
-    overflow: hidden;
-    z-index: -1;
+    position: relative;
   }
 
   &-item {
-    @include circleSize(50%);
+    @include circleSize(100%);
     position: absolute;
-    right: 0;
-    top: 0;
-    transform-origin: left bottom;
+    clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+    border-radius: 50%;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      transform-origin: right center;
+      // transform: rotate(18deg);
+      z-index: -1;
+    }
 
     // 基數
     &:nth-child(odd) {
+      &::before {
+        background: $pink;
+      }
+
       color: $blue;
-      background: $pink;
     }
 
     // 偶數
     &:nth-child(even) {
+      &::before {
+        background: $blue;
+      }
+
       color: $pink;
-      background: $blue;
     }
 
     &-title {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: absolute;
-
-      width: 90px;
-      height: 90px;
-      transform: skewX(30deg) rotate(60deg);
-      top: 47%;
-      left: 25%;
-    }
-
-    &-title-prize20 {
-      transform: skewX(72deg) rotate(81deg);
-      top: 72%;
-      left: 17%;
+      height: 50%;
+      text-align: center;
+      padding-top: 40px;
+      transform-origin: bottom center;
     }
 
     &-icons {
@@ -221,5 +235,25 @@ body {
       font-weight: bold;
     }
 
+  }
+
+  @for $d from 1 through $max6 {
+    .wheel-item-6-#{$d} {
+      transform: rotate(((($d - 1)*60)+deg));
+
+      &::before {
+        transform: rotate(60deg);
+      }
+    }
+  }
+
+  @for $d from 1 through $max20 {
+    .wheel-item-20-#{$d} {
+      transform: rotate(((($d - 1)*18)+deg));
+
+      &::before {
+        transform: rotate(18deg);
+      }
+    }
   }
 }
