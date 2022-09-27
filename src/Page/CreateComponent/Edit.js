@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import EditData from "../../Utils/EditData.json";
-function Edit6({setMyPrize}) {
+import { useState,useEffect } from "react";
+function Edit6({editData,setMyPrize}) {
   let navigate = useNavigate()
-  const [data, setData] = useState(EditData[0].edit6);
+  const [data, setData] = useState(editData);
   const handleChange = (e) => {
     const { id, value } = e.target;
     setData((state) =>
@@ -15,7 +14,9 @@ function Edit6({setMyPrize}) {
     setMyPrize(data)
     navigate('/create/newprize')
   }
-  useEffect(() => {}, []);
+  useEffect(()=>{
+    setData(editData)
+  },[editData.length])
   return (
     <>
       <table>
