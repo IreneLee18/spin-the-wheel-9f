@@ -1,5 +1,6 @@
 import WheelInner from "./WheelComponents/WheelInner";
 import Loading from "./Component/Loading";
+import ResultPrizeIcon from "./ResultComponent/ResultPrizeIcon";
 import { useState, useEffect, useCallback } from "react";
 function Wheel({ prize }) {
   const [isLoading, setIsLading] = useState(true);
@@ -105,21 +106,9 @@ function Wheel({ prize }) {
             <div className="result-banner">
               <ul className="result-icon">
                 {prize.length === 6 ? (
-                  <>
-                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
-                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
-                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
-                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
-                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
-                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
-                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
-                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
-                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
-                  </>
+                  <ResultPrizeIcon prizeIcon={freePrizeIcon} />
                 ) : (
-                  <>
-                    <li>{freePrize}</li>
-                  </>
+                  <ResultPrizeIcon prizeIcon={freePrize} />
                 )}
               </ul>
               <p className="wheel-done">
