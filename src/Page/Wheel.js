@@ -1,7 +1,7 @@
 import WheelInner from "./WheelComponents/WheelInner";
 import Loading from "./Component/Loading";
 import ResultPrizeIcon from "./ResultComponent/ResultPrizeIcon";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 function Wheel({ prize }) {
   const [isLoading, setIsLading] = useState(true);
   const [prizeData, setPrizeData] = useState(prize);
@@ -14,6 +14,19 @@ function Wheel({ prize }) {
   const [freePrize, setFreePrize] = useState("");
   const [freePrizeIcon, setFreePrizeIcon] = useState([]);
   const [showFreePrize, setShowFreePrize] = useState(false);
+
+  // prize probability
+  const prizeProbability = useRef([]);
+  useEffect(() => {
+    const probability = [];
+    prize.forEach((item, index) => {
+      for (let i = 0; i < item.prize; i++) {
+        probability.push(index);
+      }
+    });
+    prizeProbability.current = probability;
+  }, [prize]);
+
   const handleClick = () => {
     if (!isStart) {
       setStart(true);
@@ -41,7 +54,17 @@ function Wheel({ prize }) {
   );
 
   const getDeg = useCallback(() => {
-    let picked = Math.floor(Math.random() * prizeData.length);
+    if (prizeProbability.current.length === 0) return alert("獎項已抽完！");
+    // 1.宣告 probability 賦予 prizeProbability.current
+    const probability = prizeProbability.current;
+    // 2.宣告 索引值 賦予 隨機數字(範圍：跟prizeProbability長度一樣的數字)
+    const index = Math.floor(Math.random() * probability.length);
+    // 3.宣告 picked 賦予 probability[索引值]
+    const picked = probability[index];
+    // 4.刪除 probability 中 picked 選到的索引值 ＝ 刪除 probability 的 索引值
+    probability.splice(index, 1);
+    // 5.將 probability 的最終資料傳給 prizeProbability.current，這樣每次取得 prizeProbability.current 的資料才會是最新的
+    prizeProbability.current = probability;
     const currentDeg =
       Number(startDeg) +
       1800 +
@@ -55,7 +78,7 @@ function Wheel({ prize }) {
       getFree(picked);
       setIsStart(false);
     }, [4000]);
-  }, [getFree, prizeData.length, startDeg]);
+  }, [getFree, prizeData.length, prizeProbability, startDeg]);
 
   // render getDeg
   useEffect(() => {
