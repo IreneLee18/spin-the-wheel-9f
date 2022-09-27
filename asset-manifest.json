@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/spin-the-wheel-9f/static/css/main.767cc2a9.css",
+    "main.js": "/spin-the-wheel-9f/static/js/main.c296c155.js",
+    "static/js/787.94702159.chunk.js": "/spin-the-wheel-9f/static/js/787.94702159.chunk.js",
+    "static/media/wheel-outside.svg": "/spin-the-wheel-9f/static/media/wheel-outside.7004b6f29723209ee243.svg",
+    "static/media/hand.svg": "/spin-the-wheel-9f/static/media/hand.9003a663988304afc705.svg",
+    "index.html": "/spin-the-wheel-9f/index.html",
+    "main.767cc2a9.css.map": "/spin-the-wheel-9f/static/css/main.767cc2a9.css.map",
+    "main.c296c155.js.map": "/spin-the-wheel-9f/static/js/main.c296c155.js.map",
+    "787.94702159.chunk.js.map": "/spin-the-wheel-9f/static/js/787.94702159.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.767cc2a9.css",
+    "static/js/main.c296c155.js"
+  ]
+}
