@@ -21,9 +21,17 @@ $max20: 20;
   background: $pink;
 }
 
-@mixin circleSize($s) {
-  width: $s;
-  height: $s;
+@mixin size($w, $h, $circle: false) {
+  @if $circle {
+    width: $w;
+    height: $h;
+    border-radius: 50%;
+  }
+
+  @else {
+    width: $w;
+    height: $h;
+  }
 }
 
 @mixin absolute-center {
@@ -52,6 +60,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 100;
 }
 
 body {
@@ -63,9 +72,6 @@ body {
 .link-group {
   padding: 10px 0;
   margin-left: 10px;
-  @media (max-width:375px) {
-    
-  }
 
   a {
     color: $pink;
@@ -83,11 +89,12 @@ body {
 }
 
 .result-banner {
-  width: 100%;
-  height: 237px;
-  background: $blue;
+  @include size(100%, 237px, $circle: false);
   @include absolute-center;
+  background: $blue;
   z-index: -2;
+  overflow: hidden;
+
   @media (max-width:375px) {
     display: none;
   }
@@ -96,6 +103,63 @@ body {
     color: white;
     font-weight: bold;
     font-size: 72px;
+  }
+
+  .result-icon {
+    position: relative;
+    @include size(100%, 100%, $circle: false);
+
+    li {
+      font-size: 50px;
+      color: #1F1172;
+      opacity: 0.5;
+
+      &:nth-child(1) {
+        @include absolute-top-left(60%, -2%);
+      }
+
+      &:nth-child(2) {
+        @include absolute-top-left(20%, 5%);
+        transform: rotate(20deg);
+      }
+
+      &:nth-child(3) {
+        @include absolute-top-left(86%, 9%);
+        transform: rotate(-24deg);
+      }
+
+      &:nth-child(4) {
+        @include absolute-top-left(-8%, 22%);
+        transform: rotate(-28deg);
+      }
+
+      &:nth-child(5) {
+        @include absolute-top-left(70%, 29%);
+
+      }
+
+      &:nth-child(6) {
+        @include absolute-top-left(-6%, 75%);
+
+      }
+
+      &:nth-child(7) {
+        @include absolute-top-left(86%, 78%);
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(8) {
+        @include absolute-top-left(56%, 91%);
+        transform: rotate(-19deg);
+
+      }
+
+      &:nth-child(9) {
+        @include absolute-top-left(13%, 98%);
+        transform: rotate(19deg);
+
+      }
+    }
   }
 
   .wheel-done {
@@ -115,28 +179,27 @@ body {
 }
 
 .container {
-  @include circleSize(550px);
+  @include size(550px, 550px, $circle: false);
   @include absolute-center;
 
   @media (max-width:375px) {
-    @include circleSize(350px);
+    @include size(225px, 225px, $circle: false);
   }
 }
 
 .wheel {
-  @include circleSize(100%);
-  border-radius: 50%;
+  @include size(100%, 100%, $circle: true);
   position: relative;
 
   &-outside {
-    @include circleSize(100%);
+    @include size(100%, 100%, $circle: false);
     position: relative;
 
     &:after {
       content: '';
       position: absolute;
       top: 0;
-      @include circleSize(100%);
+      @include size(100%, 100%, $circle: false);
       background-image: url('./image/wheel-outside.svg');
       background-size: cover;
       background-position: center;
@@ -146,14 +209,13 @@ body {
 
 
   &-center {
-    @include circleSize(128px);
-    border-radius: 50%;
+    @include size(128px, 128px, $circle: true);
     background: #1f1172;
     @include absolute-center;
     z-index: 100;
 
     @media (max-width:375px) {
-      @include circleSize(90px);
+      @include size(50px, 50px, $circle: true);
     }
 
     &:before {
@@ -162,8 +224,9 @@ body {
       color: $dark-pink;
       font-size: 30px;
       font-weight: bold;
+
       @media (max-width:375px) {
-        font-size: 18px;
+        font-size: 14px;
       }
     }
 
@@ -177,50 +240,44 @@ body {
   }
 
   &-hand {
-    @include circleSize(100%);
+    @include size(100%, 100%, $circle: false);
     transform: rotate(0deg);
     transition: transform 4s cubic-bezier(.5, .1, .15, 1);
 
     &::before {
       content: '';
-      @include circleSize(256px);
-      position: absolute;
-      left: 50%;
-      top: -81.5%;
+      @include size(256px, 256px, $circle: false);
+      @include absolute-top-left(-81.5%, 50%);
       transform: translateX(-50%);
       background-image: url('./image/hand.svg');
       background-position: center;
       background-repeat: no-repeat;
 
       @media (max-width:375px) {
-        @include circleSize(180px);
-        background-size: 100px;
-        top: -85%;
+        @include size(100px, 100px, $circle: false);
+        background-size: 61px;
+        @include absolute-top-left(-88.6%, 50%);
       }
     }
   }
 
   // 內部資料
   &-inner {
-    @include circleSize(100%);
-    border-radius: 50%;
+    @include size(100%, 100%, $circle: true);
     position: relative;
   }
 
   &-item {
-    @include circleSize(100%);
+    @include size(100%, 100%, $circle: true);
     position: absolute;
     clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
-    border-radius: 50%;
     overflow: hidden;
 
     &::before {
       content: "";
       position: absolute;
-      width: 50%;
-      height: 100%;
+      @include size(50%, 100%, $circle: false);
       transform-origin: right center;
-      // transform: rotate(18deg);
       z-index: -1;
     }
 
@@ -246,11 +303,26 @@ body {
       height: 50%;
       text-align: center;
       padding-top: 40px;
+      padding-right: 12px;
       transform-origin: bottom center;
+
+      @media (max-width:375px) {
+        padding-top: 20px;
+        padding-right: 6px;
+      }
+    }
+
+    .wheel-item-title-6 {
+      padding-right: 40px;
+
+      @media (max-width:375px) {
+        padding-right: 20px;
+      }
     }
 
     &-icons {
       font-size: 72px;
+
       @media (max-width:375px) {
         font-size: 36px;
       }
@@ -259,8 +331,9 @@ body {
     &-id {
       font-size: 28px;
       font-weight: bold;
+
       @media (max-width:375px) {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
 

@@ -18,7 +18,7 @@ function WheelInner({ prize }) {
                 ? `wheel-item-6-${index + 1}`
                 : `wheel-item-20-${index + 1}`
             } `}
-            key={item.id}
+            key={`${item.id}${index}`}
             id={item.id}
           >
             <PrizeInner data={item} length={prize.length} />

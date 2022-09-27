@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import EditData from "../../Utils/EditData.json";
-function Edit6() {
+function Edit6({setMyPrize}) {
+  let navigate = useNavigate()
   const [data, setData] = useState(EditData[0].edit6);
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -8,6 +10,11 @@ function Edit6() {
       state.map((data, i) => (i === Number(id) ? { ...data, id: value } : data))
     );
   };
+  const handleClick = () => {
+    console.log('click')
+    setMyPrize(data)
+    navigate('/create/newprize')
+  }
   useEffect(() => {}, []);
   return (
     <>
@@ -65,7 +72,7 @@ function Edit6() {
         </tbody>
       </table>
       <div className="edit-save-btn">
-        <button>SAVE</button>
+        <button onClick={handleClick}>SAVE</button>
       </div>
     </>
   );

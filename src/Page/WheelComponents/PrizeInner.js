@@ -2,11 +2,15 @@ function Prize20Inner({ data, length }) {
   return (
     <>
       <div
-        className="wheel-item-title"
+        className={
+          length === 6
+            ? `wheel-item-title wheel-item-title-6`
+            : `wheel-item-title`
+        }
         style={
           length === 6
-            ? { transform: "rotate(30deg)", paddingRight: "40px" }
-            : { transform: `rotate(8deg)` }
+            ? { transform: "rotate(30deg)" }
+            : { transform: `rotate(9deg)` }
         }
       >
         {length === 6 ? (

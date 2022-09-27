@@ -1,5 +1,5 @@
-import WheelInner from "./Components/WheelInner";
-import Loading from "./Components/Loading";
+import WheelInner from "./WheelComponents/WheelInner";
+import Loading from "./Component/Loading";
 import { useState, useEffect, useCallback } from "react";
 function Wheel({ prize }) {
   const [isLoading, setIsLading] = useState(true);
@@ -11,6 +11,7 @@ function Wheel({ prize }) {
   // if "Start picked prize" is start, can't press start button.
   const [isStart, setIsStart] = useState(false);
   const [freePrize, setFreePrize] = useState("");
+  const [freePrizeIcon, setFreePrizeIcon] = useState([]);
   const [showFreePrize, setShowFreePrize] = useState(false);
   const handleClick = () => {
     if (!isStart) {
@@ -23,7 +24,10 @@ function Wheel({ prize }) {
     (picked) => {
       setShowFreePrize(true);
       prizeData.forEach((item, index) => {
-        if (index === picked) return setFreePrize(item.id);
+        if (index === picked) {
+          setFreePrize(item.id);
+          setFreePrizeIcon([item.class, item.title]);
+        }
       });
       // 要修改prize數量寫法：首先先取出原本的state，接著原本state用map去修改資料，若陣列=目前取得值，就將prize-1；不是就回傳原本的資料。
       setPrizeData((state) =>
@@ -99,6 +103,25 @@ function Wheel({ prize }) {
           </div>
           {showFreePrize ? (
             <div className="result-banner">
+              <ul className="result-icon">
+                {prize.length === 6 ? (
+                  <>
+                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
+                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
+                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
+                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
+                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
+                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
+                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
+                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
+                    <li className={freePrizeIcon[0]}>{freePrizeIcon[1]}</li>
+                  </>
+                ) : (
+                  <>
+                    <li>{freePrize}</li>
+                  </>
+                )}
+              </ul>
               <p className="wheel-done">
                 WELL
                 <br />

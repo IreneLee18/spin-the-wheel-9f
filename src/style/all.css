@@ -163,6 +163,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 100;
 }
 
 body {
@@ -193,13 +194,14 @@ body {
 .result-banner {
   width: 100%;
   height: 237px;
-  background: #343BAA;
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  background: #343BAA;
   z-index: -2;
+  overflow: hidden;
 }
 
 @media (max-width: 375px) {
@@ -212,6 +214,84 @@ body {
   color: white;
   font-weight: bold;
   font-size: 72px;
+}
+
+.result-banner .result-icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.result-banner .result-icon li {
+  font-size: 50px;
+  color: #1F1172;
+  opacity: 0.5;
+}
+
+.result-banner .result-icon li:nth-child(1) {
+  position: absolute;
+  top: 60%;
+  left: -2%;
+}
+
+.result-banner .result-icon li:nth-child(2) {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  -webkit-transform: rotate(20deg);
+          transform: rotate(20deg);
+}
+
+.result-banner .result-icon li:nth-child(3) {
+  position: absolute;
+  top: 86%;
+  left: 9%;
+  -webkit-transform: rotate(-24deg);
+          transform: rotate(-24deg);
+}
+
+.result-banner .result-icon li:nth-child(4) {
+  position: absolute;
+  top: -8%;
+  left: 22%;
+  -webkit-transform: rotate(-28deg);
+          transform: rotate(-28deg);
+}
+
+.result-banner .result-icon li:nth-child(5) {
+  position: absolute;
+  top: 70%;
+  left: 29%;
+}
+
+.result-banner .result-icon li:nth-child(6) {
+  position: absolute;
+  top: -6%;
+  left: 75%;
+}
+
+.result-banner .result-icon li:nth-child(7) {
+  position: absolute;
+  top: 86%;
+  left: 78%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.result-banner .result-icon li:nth-child(8) {
+  position: absolute;
+  top: 56%;
+  left: 91%;
+  -webkit-transform: rotate(-19deg);
+          transform: rotate(-19deg);
+}
+
+.result-banner .result-icon li:nth-child(9) {
+  position: absolute;
+  top: 13%;
+  left: 98%;
+  -webkit-transform: rotate(19deg);
+          transform: rotate(19deg);
 }
 
 .result-banner .wheel-done {
@@ -247,8 +327,8 @@ body {
 
 @media (max-width: 375px) {
   .container {
-    width: 350px;
-    height: 350px;
+    width: 225px;
+    height: 225px;
   }
 }
 
@@ -291,8 +371,9 @@ body {
 
 @media (max-width: 375px) {
   .wheel-center {
-    width: 90px;
-    height: 90px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
   }
 }
 
@@ -310,7 +391,7 @@ body {
 
 @media (max-width: 375px) {
   .wheel-center:before {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
@@ -346,8 +427,8 @@ body {
   width: 256px;
   height: 256px;
   position: absolute;
-  left: 50%;
   top: -81.5%;
+  left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   background-image: url("./image/hand.svg");
@@ -357,10 +438,12 @@ body {
 
 @media (max-width: 375px) {
   .wheel-hand::before {
-    width: 180px;
-    height: 180px;
-    background-size: 100px;
-    top: -85%;
+    width: 100px;
+    height: 100px;
+    background-size: 61px;
+    position: absolute;
+    top: -88.6%;
+    left: 50%;
   }
 }
 
@@ -374,10 +457,10 @@ body {
 .wheel-item {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   position: absolute;
   -webkit-clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
           clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
-  border-radius: 50%;
   overflow: hidden;
 }
 
@@ -411,8 +494,26 @@ body {
   height: 50%;
   text-align: center;
   padding-top: 40px;
+  padding-right: 12px;
   -webkit-transform-origin: bottom center;
           transform-origin: bottom center;
+}
+
+@media (max-width: 375px) {
+  .wheel-item-title {
+    padding-top: 20px;
+    padding-right: 6px;
+  }
+}
+
+.wheel-item .wheel-item-title-6 {
+  padding-right: 40px;
+}
+
+@media (max-width: 375px) {
+  .wheel-item .wheel-item-title-6 {
+    padding-right: 20px;
+  }
 }
 
 .wheel-item-icons {
@@ -432,7 +533,7 @@ body {
 
 @media (max-width: 375px) {
   .wheel-item-id {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
@@ -708,6 +809,13 @@ table {
   border-collapse: collapse;
 }
 
+@media (max-width: 375px) {
+  table {
+    width: 300px;
+    font-size: 24px;
+  }
+}
+
 table thead {
   background: #343BAA;
   color: white;
@@ -740,6 +848,13 @@ table tbody td {
   vertical-align: middle;
 }
 
+@media (max-width: 375px) {
+  table tbody th,
+  table tbody td {
+    padding: 12px 0;
+  }
+}
+
 table tbody input {
   width: 100%;
   height: 36px;
@@ -747,6 +862,12 @@ table tbody input {
   border: none;
   outline: none;
   background: transparent;
+}
+
+@media (max-width: 375px) {
+  table tbody input {
+    font-size: 24px;
+  }
 }
 
 table tbody .btn-group {
@@ -797,6 +918,12 @@ table tbody button:hover span {
 .edit-save-btn {
   width: 500px;
   margin: 0 auto;
+}
+
+@media (max-width: 375px) {
+  .edit-save-btn {
+    width: 300px;
+  }
 }
 
 .edit-save-btn button {

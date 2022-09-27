@@ -7,6 +7,10 @@ table {
   font-size: 36px;
   background: white;
   border-collapse: collapse;
+  @media (max-width:375px) {
+    width: 300px;
+    font-size: 24px;
+  }
 
   thead {
     background: $blue;
@@ -42,6 +46,9 @@ table {
     td {
       padding: 16px 0;
       vertical-align: middle;
+      @media (max-width:375px) {
+        padding: 12px 0;
+      }
     }
 
     input {
@@ -51,6 +58,9 @@ table {
       border: none;
       outline: none;
       background: transparent;
+      @media (max-width:375px) {
+        font-size: 24px;
+      }
     }
 
     .btn-group {
@@ -92,6 +102,9 @@ table {
 .edit-save-btn {
   width: 500px;
   margin: 0 auto;
+  @media (max-width:375px) {
+    width: 300px;
+  }
 
   button {
     border: none;
